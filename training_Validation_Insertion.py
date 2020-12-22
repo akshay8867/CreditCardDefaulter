@@ -12,7 +12,7 @@ class train_validation:
     def __init__(self,path):
         self.raw_data=Raw_Data_validation(path)
         self.dataTransform=dataTransform()
-        self.dBoperation=dBOperation()
+        self.dBOperation=dBOperation()
         self.cwd=os.getcwd()
         self.file_object = open(self.cwd+'Training_Main_Log.txt', 'a+')
         self.log_writer = logger.App_Logger()

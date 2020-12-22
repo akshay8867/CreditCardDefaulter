@@ -13,7 +13,7 @@ os.putenv('LC_ALL', 'en_US.UTF-8')
 app = Flask(__name__)
 
 CORS(app)
-@app.route("/",method=['POST'])
+@app.route("/predict",methods=['POST'])
 @cross_origin()
 def predictRouteClient():
     try:
@@ -44,6 +44,7 @@ def trainRouteClient():
             train_valObj.train_validation()
             trainModelObj = trainModel()
             trainModelObj.trainingModel()
+            return Response('Successful End of Training')
         else:
             return Response("Invalid filepath")
     except ValueError:
@@ -55,5 +56,6 @@ def trainRouteClient():
 
 
 
-if __name__=='__main__':
-    print("hello")
+port = int(os.getenv("PORT",5001))
+if __name__ == "__main__":
+    app.run(port=port,debug=True)
